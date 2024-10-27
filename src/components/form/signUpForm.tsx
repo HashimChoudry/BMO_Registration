@@ -94,18 +94,16 @@ const SignUpForm = () => {
 
   return (
     <section className="w-4/5 flex items-center flex-col">
-        <div className="p-10">
-            <h2 className="font-semibold text-4xl">
-                Lets get Started
-            </h2>
-        </div>
-      <div className="flex items-center justify-center bg-neutral-200 text-black p-5 rounded-lg w-full">
+      <div className="p-10">
+        <h2 className="formTitle">Lets get Started</h2>
+      </div>
+      <div className="flex items-center justify-center bg-neutral-200 text-black p-5 rounded-lg w-full sm:mb-10">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-10">
             <div className="flex md:flex-row flex-col justify-between">
-              <div className="w-[48%]">
+              <div className="formSection">
                 <div className="flex justify-between">
                   <FormField
                     control={form.control}
@@ -194,14 +192,14 @@ const SignUpForm = () => {
                   )}
                 />
               </div>
-              <div className="flex items-start flex-col">
+              <div className="formSection ">
                 {/* Business Address fields */}
-                <div className="flex flex-wrap justify-between">
+                <div className="flex justify-between flex-col">
                   <FormField
                     control={form.control}
                     name="business_address.street"
                     render={({ field }) => (
-                      <FormItem className="w-[48%]">
+                      <FormItem className="">
                         <FormLabel>First Line Adress</FormLabel>
                         <FormControl>
                           <Input
@@ -214,45 +212,48 @@ const SignUpForm = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="business_address.city"
-                    render={({ field }) => (
-                      <FormItem className="w-[48%]">
-                        <FormLabel>City</FormLabel>
-                        <FormControl>
-                          <Input
-                            className="text-black"
-                            placeholder="Enter The City"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="business_address.postcode"
-                    render={({ field }) => (
-                      <FormItem className="w-[48%]">
-                        <FormLabel>Postcode</FormLabel>
-                        <FormControl>
-                          <Input
-                            className="text-black"
-                            placeholder="Enter The Postcode"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="addressRow">
+                    <FormField
+                      control={form.control}
+                      name="business_address.city"
+                      render={({ field }) => (
+                        <FormItem className="addressInput">
+                          <FormLabel>City</FormLabel>
+                          <FormControl>
+                            <Input
+                              className="text-black"
+                              placeholder="Enter The City"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="business_address.postcode"
+                      render={({ field }) => (
+                        <FormItem className="addressInput">
+                          <FormLabel>Postcode</FormLabel>
+                          <FormControl>
+                            <Input
+                              className="text-black"
+                              placeholder="Enter The Postcode"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
                   <FormField
                     control={form.control}
                     name="business_address.country"
                     render={({ field }) => (
-                      <FormItem className="w-[48%]">
+                      <FormItem className="addressInput">
                         <FormLabel>Country</FormLabel>
                         <FormControl>
                           <Input
@@ -309,7 +310,7 @@ const SignUpForm = () => {
                   control={form.control}
                   name="email_consent"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="mb-5">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -317,7 +318,7 @@ const SignUpForm = () => {
                         />
                       </FormControl>
                       <FormLabel className="ml-2">
-                        I consent receiving emails from MBO
+                        I consent to receiving emails from MBO
                       </FormLabel>
                       <FormMessage />
                     </FormItem>
