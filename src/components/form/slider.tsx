@@ -8,7 +8,7 @@ const Slider = () => {
       <div className="flex overflow-hidden bg-mboBg-200 mt-10 hidden md:flex">
           <div className="flex relative min-w-full justify-evenly pt-5 pb-5 space-x-16 animate-loop-scroll">
             {SLIDER_IMAGES.map((link) => (
-              <div className="w-1/5 h-40 relative">
+              <div className="w-1/5 h-40 relative" key={link.alt}>
                 <Image
                   alt={link.alt}
                   src={link.link}
@@ -22,7 +22,7 @@ const Slider = () => {
           </div>
           <div className="flex min-w-full relative justify-evenly pt-10 pb-10 space-x-16 animate-loop-scroll">
             {SLIDER_IMAGES.map((link) => (
-              <div className="w-1/5 h-40 relative">
+              <div className="w-1/5 h-40 relative" key={link.link}>
                 <Image
                   alt={link.alt}
                   src={link.link}
