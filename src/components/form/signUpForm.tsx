@@ -223,7 +223,7 @@ const SignUpForm = () => {
                         <FormControl>
                           <Input
                             className="text-black"
-                            placeholder="Enter The First Line of Address"
+                            placeholder="Enter The City"
                             {...field}
                           />
                         </FormControl>
@@ -240,7 +240,7 @@ const SignUpForm = () => {
                         <FormControl>
                           <Input
                             className="text-black"
-                            placeholder="Endter The First Line of Address"
+                            placeholder="Enter The Postcode"
                             {...field}
                           />
                         </FormControl>
@@ -257,7 +257,7 @@ const SignUpForm = () => {
                         <FormControl>
                           <Input
                             className="text-black"
-                            placeholder="Endter The First Line of Address"
+                            placeholder="Enter The country"
                             {...field}
                           />
                         </FormControl>
