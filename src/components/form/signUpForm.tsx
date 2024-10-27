@@ -95,7 +95,7 @@ const SignUpForm = () => {
   return (
     <section className="w-4/5 flex items-center flex-col">
         <div className="p-10">
-            <h2 className="font-semibold text-2xl">
+            <h2 className="font-semibold text-4xl">
                 Lets get Started
             </h2>
         </div>

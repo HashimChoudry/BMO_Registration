@@ -7,9 +7,9 @@ const Header = () => {
       <div>
         <Image alt="MBO Logo" src="/MBO_Clear.png" width={400} height={300} />
       </div>
-      <div>
-        <h2 className="md:text-lg lg:text-xl xl:text-2xl">
-          Join <span className="text-mboTurq-500">50+</span> Muslim Businesses In Building Lasting
+      <div className="">
+        <h2 className="text-5xl ">
+           Join <span className="text-mboTurq-500 font-bold">50+</span> Muslim Businesses In Building Lasting
           Connections
         </h2>
       </div>
