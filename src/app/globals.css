@@ -74,7 +74,8 @@ body {
 @layer utilities {
   .logoContainer {
     width:400px;
-    height:100px;
+    height:auto;
+    margin-top:20px;
   }
     
   .headerText{

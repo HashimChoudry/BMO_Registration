@@ -113,7 +113,6 @@ const SignUpForm = () => {
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input
-                            className="text-white  "
                             placeholder="First Name"
                             {...field}
                           />
@@ -130,7 +129,7 @@ const SignUpForm = () => {
                         <FormLabel>Second Name</FormLabel>
                         <FormControl>
                           <Input
-                            className="text-black "
+
                             placeholder="Second Name"
                             {...field}
                           />
@@ -148,7 +147,7 @@ const SignUpForm = () => {
                       <FormLabel>Contact Number</FormLabel>
                       <FormControl>
                         <Input
-                          className="text-black"
+                          
                           placeholder="Contact Number"
                           {...field}
                         />
@@ -165,7 +164,7 @@ const SignUpForm = () => {
                       <FormLabel>Business Name</FormLabel>
                       <FormControl>
                         <Input
-                          className="text-black"
+                          
                           placeholder="Enter Business Name"
                           {...field}
                         />
@@ -182,7 +181,7 @@ const SignUpForm = () => {
                       <FormLabel>Business Email</FormLabel>
                       <FormControl>
                         <Input
-                          className="text-black"
+                          
                           placeholder="Enter Your Business Email"
                           {...field}
                         />
@@ -203,7 +202,7 @@ const SignUpForm = () => {
                         <FormLabel>First Line Adress</FormLabel>
                         <FormControl>
                           <Input
-                            className="text-black"
+                            
                             placeholder="Enter The First Line of Address"
                             {...field}
                           />
@@ -221,7 +220,7 @@ const SignUpForm = () => {
                           <FormLabel>City</FormLabel>
                           <FormControl>
                             <Input
-                              className="text-black"
+                              
                               placeholder="Enter The City"
                               {...field}
                             />
@@ -238,7 +237,7 @@ const SignUpForm = () => {
                           <FormLabel>Postcode</FormLabel>
                           <FormControl>
                             <Input
-                              className="text-black"
+                              
                               placeholder="Enter The Postcode"
                               {...field}
                             />
@@ -257,7 +256,7 @@ const SignUpForm = () => {
                         <FormLabel>Country</FormLabel>
                         <FormControl>
                           <Input
-                            className="text-black"
+                            
                             placeholder="Enter The country"
                             {...field}
                           />
@@ -275,7 +274,7 @@ const SignUpForm = () => {
                       <FormLabel>Business Website</FormLabel>
                       <FormControl>
                         <Input
-                          className="text-black"
+                          
                           placeholder="Enter The Business Website"
                           {...field}
                         />
@@ -294,7 +293,7 @@ const SignUpForm = () => {
                             <FormControl>
                               <Input
                                 type="file"
-                                className="text-black"
+                                
                                 {...fileRef}
                                 onChange={(e) => {
                                   field.onChange(e.target.files && e.target.files[0]);
