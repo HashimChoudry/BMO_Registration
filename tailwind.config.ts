@@ -64,8 +64,10 @@ const config: Config = {
           900: "#073E29",
         },
 		mboBg: {
-			50: "#232D3F",
-			100: "#151515"
+			50: "#4d4d4d",
+			100: "#0f0e12",
+			200: "#191922",
+			300: "#2F2F38",
 		}
       },
       borderRadius: {
@@ -73,6 +75,16 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+	  animation:{
+		"loop-scroll":"loop-scroll 50s linear infinite",
+
+	  },
+	  keyframes:{
+		"loop-scroll":{
+			from: {transform:"translateX(0)"},
+			to: {transform: "translateX(-100%)"}
+		}
+	  }
     },
   },
   plugins: [animate],

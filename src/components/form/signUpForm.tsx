@@ -97,7 +97,7 @@ const SignUpForm = () => {
       <div className="p-10">
         <h2 className="formTitle">Lets get Started</h2>
       </div>
-      <div className="flex items-center justify-center bg-neutral-200 text-black p-5 rounded-lg w-full sm:mb-10">
+      <div className="flex items-center justify-center bg-mboBg-200 p-5 rounded-lg w-full sm:mb-10">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -113,7 +113,7 @@ const SignUpForm = () => {
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input
-                            className="text-black "
+                            className="text-white  "
                             placeholder="First Name"
                             {...field}
                           />
