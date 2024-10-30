@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Form {
+  id                       Int      @id @default(autoincrement())
+  first_name               String   @db.VarChar(255)
+  second_name              String   @db.VarChar(255)
+  contact_number           String   @db.VarChar(15) // UK phone number format
+  business_name            String   @db.VarChar(255)
+  business_email           String   @unique @db.VarChar(255)
+  business_address_street  String   @db.VarChar(255)
+  business_address_city    String   @db.VarChar(255)
+  business_address_postcode String  @db.VarChar(10) // For UK postcode format
+  business_address_country String   @default("United Kingdom") @db.VarChar(255)
+  business_website         String   @db.VarChar(255)
+  email_consent            Boolean
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  @@index([createdAt])
+  @@map("posts")
+}

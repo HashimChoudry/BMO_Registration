@@ -27,19 +27,21 @@ const SignUpForm = () => {
       .string()
       .min(1, { message: "Enter a Valid Business Name" }),
     business_email: z.string().email("Enter a Valid"),
-    business_address: z.object({
-      street: z
-        .string()
-        .min(3, "Street name must be at least 3 characters long."),
-      city: z.string().min(2, "City name must be at least 2 characters long."),
-      postcode: z
-        .string()
-        .regex(
-          /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i,
-          "Invalid UK postcode format."
-        ),
-      country: z.string().default("United Kingdom").optional(),
-    }),
+    business_address_street: z
+    .string()
+    .min(3, { message: "Street name must be at least 3 characters long." }),
+  business_address_city: z
+    .string()
+    .min(2, { message: "City name must be at least 2 characters long." }),
+  business_address_postcode: z
+    .string()
+    .regex(
+      /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i,
+      "Invalid UK postcode format."
+    ),
+  business_address_country: z
+    .string()
+    .default("United Kingdom"),
     business_website: z.string().url("Invalid URL Format"),
     // business_logo: z
     //   .instanceof(File, { message: "Please Add a file" })
@@ -63,12 +65,10 @@ const SignUpForm = () => {
       contact_number: "",
       business_name: "",
       business_email: "",
-      business_address: {
-        street: "",
-        city: "",
-        postcode: "",
-        country: "",
-      },
+      business_address_city:"",
+      business_address_country:"",
+      business_address_postcode:"",
+      business_address_street:"",
       business_website: "",
       //   business_logo: undefined,
       //   consent:false,
@@ -97,7 +97,7 @@ const SignUpForm = () => {
       <div className="p-10">
         <h2 className="formTitle">Lets get Started</h2>
       </div>
-      <div className="flex items-center justify-center bg-mboBg-200 p-5 rounded-lg w-full sm:mb-10">
+      <div className="flex items-center justify-center bg-secondary p-5 rounded-lg w-full sm:mb-10">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -196,7 +196,7 @@ const SignUpForm = () => {
                 <div className="flex justify-between flex-col">
                   <FormField
                     control={form.control}
-                    name="business_address.street"
+                    name="business_address_street"
                     render={({ field }) => (
                       <FormItem className="">
                         <FormLabel>First Line Adress</FormLabel>
@@ -214,7 +214,7 @@ const SignUpForm = () => {
                   <div className="addressRow">
                     <FormField
                       control={form.control}
-                      name="business_address.city"
+                      name="business_address_city"
                       render={({ field }) => (
                         <FormItem className="addressInput">
                           <FormLabel>City</FormLabel>
@@ -231,7 +231,7 @@ const SignUpForm = () => {
                     />
                     <FormField
                       control={form.control}
-                      name="business_address.postcode"
+                      name="business_address_postcode"
                       render={({ field }) => (
                         <FormItem className="addressInput">
                           <FormLabel>Postcode</FormLabel>
@@ -250,7 +250,7 @@ const SignUpForm = () => {
 
                   <FormField
                     control={form.control}
-                    name="business_address.country"
+                    name="business_address_country"
                     render={({ field }) => (
                       <FormItem className="addressInput">
                         <FormLabel>Country</FormLabel>

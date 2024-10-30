@@ -5,7 +5,7 @@ import Image from "next/image";
 const Slider = () => {
   return (
     <section className="w-full">
-      <div className="flex overflow-hidden bg-mboBg-200 mt-10 hidden ">
+      <div className="flex overflow-hidden bg-white mt-10  ">
           <div className="flex relative min-w-full justify-evenly pt-5 pb-5 space-x-16 animate-loop-scroll">
             {SLIDER_IMAGES.map((link) => (
               <div className="w-1/5 h-40 relative" key={link.alt}>
@@ -20,7 +20,7 @@ const Slider = () => {
               </div>
             ))}
           </div>
-          <div className="flex min-w-full relative justify-evenly pt-10 pb-10 space-x-16 animate-loop-scroll">
+          <div className="flex min-w-full relative justify-evenly pt-5 pb-5 space-x-16 animate-loop-scroll">
             {SLIDER_IMAGES.map((link) => (
               <div className="w-1/5 h-40 relative" key={link.link}>
                 <Image
