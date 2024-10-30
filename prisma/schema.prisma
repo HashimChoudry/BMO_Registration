@@ -30,5 +30,5 @@ model Form {
   updatedAt                DateTime @updatedAt
 
   @@index([createdAt])
-  @@map("posts")
+  @@map("signUpData")
 }

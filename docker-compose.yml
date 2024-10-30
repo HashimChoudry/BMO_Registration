@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres:15-alpine
     ports:
-      - 6543:6543
+      - 5432:5432
     environment:
       POSTGRES_DB: bmo_db 
       POSTGRES_HOST_AUTH_METHOD: trust
