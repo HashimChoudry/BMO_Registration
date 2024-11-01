@@ -28,20 +28,18 @@ const SignUpForm = () => {
       .min(1, { message: "Enter a Valid Business Name" }),
     business_email: z.string().email("Enter a Valid"),
     business_address_street: z
-    .string()
-    .min(3, { message: "Street name must be at least 3 characters long." }),
-  business_address_city: z
-    .string()
-    .min(2, { message: "City name must be at least 2 characters long." }),
-  business_address_postcode: z
-    .string()
-    .regex(
-      /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i,
-      "Invalid UK postcode format."
-    ),
-  business_address_country: z
-    .string()
-    .default("United Kingdom"),
+      .string()
+      .min(3, { message: "Street name must be at least 3 characters long." }),
+    business_address_city: z
+      .string()
+      .min(2, { message: "City name must be at least 2 characters long." }),
+    business_address_postcode: z
+      .string()
+      .regex(
+        /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i,
+        "Invalid UK postcode format.",
+      ),
+    business_address_country: z.string().default("United Kingdom"),
     business_website: z.string().url("Invalid URL Format"),
     // business_logo: z
     //   .instanceof(File, { message: "Please Add a file" })
@@ -65,10 +63,10 @@ const SignUpForm = () => {
       contact_number: "",
       business_name: "",
       business_email: "",
-      business_address_city:"",
-      business_address_country:"",
-      business_address_postcode:"",
-      business_address_street:"",
+      business_address_city: "",
+      business_address_country: "",
+      business_address_postcode: "",
+      business_address_street: "",
       business_website: "",
       //   business_logo: undefined,
       //   consent:false,
@@ -78,8 +76,7 @@ const SignUpForm = () => {
 
   const { toast } = useToast();
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log("toast made");
+  function MakeToast(data: z.infer<typeof formSchema>) {
     toast({
       title: "You Submitted The Following Values:",
       description: (
@@ -88,6 +85,11 @@ const SignUpForm = () => {
         </pre>
       ),
     });
+  }
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log("toast made");
+    MakeToast(data);
   }
 
   //   const fileRef = form.register("business_logo");
@@ -101,7 +103,8 @@ const SignUpForm = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-10">
+            className="w-full space-y-10"
+          >
             <div className="flex md:flex-row flex-col justify-between">
               <div className="formSection">
                 <div className="flex justify-between">
@@ -112,10 +115,7 @@ const SignUpForm = () => {
                       <FormItem className="w-[48%]">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="First Name"
-                            {...field}
-                          />
+                          <Input placeholder="First Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -128,11 +128,7 @@ const SignUpForm = () => {
                       <FormItem className="w-[48%]">
                         <FormLabel>Second Name</FormLabel>
                         <FormControl>
-                          <Input
-
-                            placeholder="Second Name"
-                            {...field}
-                          />
+                          <Input placeholder="Second Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -146,11 +142,7 @@ const SignUpForm = () => {
                     <FormItem>
                       <FormLabel>Contact Number</FormLabel>
                       <FormControl>
-                        <Input
-                          
-                          placeholder="Contact Number"
-                          {...field}
-                        />
+                        <Input placeholder="Contact Number" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -163,11 +155,7 @@ const SignUpForm = () => {
                     <FormItem>
                       <FormLabel>Business Name</FormLabel>
                       <FormControl>
-                        <Input
-                          
-                          placeholder="Enter Business Name"
-                          {...field}
-                        />
+                        <Input placeholder="Enter Business Name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -181,7 +169,6 @@ const SignUpForm = () => {
                       <FormLabel>Business Email</FormLabel>
                       <FormControl>
                         <Input
-                          
                           placeholder="Enter Your Business Email"
                           {...field}
                         />
@@ -202,7 +189,6 @@ const SignUpForm = () => {
                         <FormLabel>First Line Adress</FormLabel>
                         <FormControl>
                           <Input
-                            
                             placeholder="Enter The First Line of Address"
                             {...field}
                           />
@@ -219,11 +205,7 @@ const SignUpForm = () => {
                         <FormItem className="addressInput">
                           <FormLabel>City</FormLabel>
                           <FormControl>
-                            <Input
-                              
-                              placeholder="Enter The City"
-                              {...field}
-                            />
+                            <Input placeholder="Enter The City" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -237,7 +219,6 @@ const SignUpForm = () => {
                           <FormLabel>Postcode</FormLabel>
                           <FormControl>
                             <Input
-                              
                               placeholder="Enter The Postcode"
                               {...field}
                             />
@@ -255,11 +236,7 @@ const SignUpForm = () => {
                       <FormItem className="addressInput">
                         <FormLabel>Country</FormLabel>
                         <FormControl>
-                          <Input
-                            
-                            placeholder="Enter The country"
-                            {...field}
-                          />
+                          <Input placeholder="Enter The country" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -274,7 +251,6 @@ const SignUpForm = () => {
                       <FormLabel>Business Website</FormLabel>
                       <FormControl>
                         <Input
-                          
                           placeholder="Enter The Business Website"
                           {...field}
                         />

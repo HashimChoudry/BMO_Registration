@@ -9,7 +9,6 @@ import DataButton from "@/components/form/dataButton";
 export default async function Home() {
   const userdata = await db.form.findMany({ orderBy: { createdAt: "desc" } });
 
-
   const generateUser = async () => {
     "use server";
     const fakeUser = {
@@ -28,11 +27,12 @@ export default async function Home() {
     await db.form.createMany({
       data: [fakeUser],
     });
-    revalidatePath('/')
+    revalidatePath("/");
   };
 
   return (
     <div className="flex items-center justify-center flex-col">
+      <h1>git test</h1>
       <Header />
       {/* <Slider/> */}
       <SignUpForm />
