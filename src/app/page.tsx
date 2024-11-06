@@ -1,9 +1,11 @@
+
 import SignUpForm from "@/components/form/signUpForm";
 import Slider from "@/components/form/slider";
 import Header from "@/components/main/Header";
 // import { faker } from "@faker-js/faker"; // Import faker
 // import { revalidatePath } from "next/cache";
 // import DataButton from "@/components/form/dataButton";
+import Image from "next/image";
 
 export default async function Home() {
 
@@ -32,11 +34,19 @@ export default async function Home() {
     <div className="w-[80%] flex items-center justify-center flex-col">
       <Header />
       <Slider/>
-      <div className="w-full gap-5">
-        <div className=" w-[48%]">
+      <div className="w-full gap-5 flex">
+        <div className=" w-[60%] mt-10">
         <SignUpForm />
         </div>
-        <div className=" h-full bg-slate-600 w-[48%]"></div>
+        <div className=" mt-10 w-[48%]">
+          <div className="">
+            <Image alt="iphone image" src={'/iphone-image.png'} width={250} height={550} className="absolute z-10 transform translate-y-[150px] translate-x-[50px]"/>
+          </div>
+          <div>
+            <Image alt="ipad image" src={'/ipad-image.png'} width={750} height={510} className="absolute z-1 transform  translate-x-[200px]" />
+          </div>
+          
+        </div>
       </div>
       
     </div>

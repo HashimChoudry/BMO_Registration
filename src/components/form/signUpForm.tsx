@@ -101,8 +101,8 @@ const SignUpForm = () => {
 
   return (
     <section className="w-full flex items-center flex-col">
-      <div className="flex flex-col items-center justify-center bg-secondary p-3 rounded-lg w-full sm:mb-10 border-mboOutline-50 bg-white border-2 border-solid">
-        <div className="m-5 flex flex-col items-center">
+      <div className="flex flex-col items-center justify-center bg-secondary p-3 pl-5 pr-5 rounded-lg w-full sm:mb-10 border-mboOutline-50 bg-white border-2 border-solid ">
+        <div className="m-3 flex flex-col items-center">
           <h2 className="formTitle">Lets get Started</h2>
           <h3 className="formSubtitle">It&apos;s Easy to Do</h3>
         </div>

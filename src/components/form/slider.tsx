@@ -5,7 +5,7 @@ import Image from "next/image";
 const Slider = () => {
   return (
     <section className="w-full">
-      <div className="flex overflow-hidden bg-white mt-10  ">
+      <div className="flex overflow-hidden mt-10  ">
           <div className="flex relative min-w-full justify-evenly pt-5 pb-5 space-x-16 animate-loop-scroll">
             {SLIDER_IMAGES.map((link) => (
               <div className="w-1/5 h-40 relative" key={link.alt}>
