@@ -27,15 +27,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  min-h-full min-w-full`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-full min-w-full `}
       >
-        <main className="h-full w-full">
-        {children}
-        <Toaster />
-        </main>
         
+        <main className="h-full w-full flex flex-col items-center relative overflow-y-hidden overflow-x-hidden">
+        <div className="absolute top-0 right-0 w-[70vw] h-[70vw] rounded-full bg-mboTurq-100 -mt-[35vw] -mr-[20vw] z-[-1] hidden md:block"></div>
+        <div className="absolute top-0  w-[120vw] h-[120vw] rounded-full bg-mboTurq-100 -mt-[25vw]  z-[-1] md:hidden"></div>
+        <div className="absolute bottom-0 left-0 w-[70vw] h-[70vw] rounded-full bg-mboTurq-100 z-[-1] -mb-[35vw] -ml-[35vw] hidden md:block"></div>
+
+          {children}
+          <Toaster />
+        </main>
       </body>
-      
     </html>
   );
 }

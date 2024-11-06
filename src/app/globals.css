@@ -73,67 +73,65 @@ body {
 
 @layer utilities {
   .logoContainer {
-    width:400px;
-    height:100px;
-    margin-top:20px;
+    width: 400px;
+    height: 100px;
+    margin-top: 20px;
   }
-    
-  .headerText{
+
+  .headerText {
+    width: 100%;
     text-align: center;
-    @apply text-5xl
+    @apply text-5xl;
   }
 
-  .formSection{
-    width:47%
+  .formSection {
+    
   }
 
-  .formTitle{
-    @apply font-semibold text-4xl
+  .formTitle {
+    @apply font-semibold text-4xl;
   }
 
-  .addressInput{
-    width:48%
+  .addressInput {
+    width: 48%;
   }
-  .addressRow{
-    @apply flex justify-between
+  .addressRow {
+    @apply flex justify-between;
   }
 
-
-  @media (max-width: 768px) { /* Tablet size */
+  @media (max-width: 768px) {
+    /* Tablet size */
     .logoContainer {
       width: 300px;
-
     }
     .headerText {
-      @apply text-4xl
+      @apply text-4xl;
     }
   }
 
-  @media (max-width: 640px) { /* Mobile size */
+  @media (max-width: 640px) {
+    /* Mobile size */
     .logoContainer {
       width: 300px;
-      margin-top:20px;
+      margin-top: 20px;
     }
-    .headerText{
-      @apply text-3xl
+    .headerText {
+      @apply text-3xl;
     }
-    .formTitle{
-      @apply text-2xl
+    .formTitle {
+      @apply text-2xl;
     }
-    .formAdress{
-      @apply flex-col
+    .formAdress {
+      @apply flex-col;
     }
-    .formSection{
-      width:auto
+    .formSection {
+      width: auto;
     }
-    .addressInput{
-      width:auto
+    .addressInput {
+      width: auto;
     }
-    .addressRow{
-      @apply flex-col
+    .addressRow {
+      @apply flex-col;
     }
-
-
   }
-
 }

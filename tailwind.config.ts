@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import animate from 'tailwindcss-animate'
+import animate from "tailwindcss-animate";
 
 const config: Config = {
   darkMode: ["class"],
@@ -63,28 +63,34 @@ const config: Config = {
           800: "#116645",
           900: "#073E29",
         },
-		mboBg: {
-			50: "#4d4d4d",
-			100: "#0f0e12",
-			200: "#191922",
-			300: "#2F2F38",
-		}
+        mboBg: {
+          50: "#4d4d4d",
+          100: "#0f0e12",
+          200: "#191922",
+          300: "#2F2F38",
+        },
+        mboOutline: {
+          50: "#D1CCCC"
+        },
+        inputBg:{
+          50: "#F6F3F3"
+        }
+
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-	  animation:{
-		"loop-scroll":"loop-scroll 50s linear infinite",
-
-	  },
-	  keyframes:{
-		"loop-scroll":{
-			from: {transform:"translateX(0)"},
-			to: {transform: "translateX(-100%)"}
-		}
-	  }
+      animation: {
+        "loop-scroll": "loop-scroll 50s linear infinite",
+      },
+      keyframes: {
+        "loop-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
+      },
     },
   },
   plugins: [animate],

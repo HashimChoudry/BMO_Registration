@@ -7,10 +7,10 @@ const Header = () => {
       <div className="mx-auto logoContainer">
         <Image alt="MBO Logo" src="/MBO_Clear.png" width={400} height={300} />
       </div>
-      <div className="mx-auto w-[90%]">
+      <div className="mx-auto">
         <h2 className="headerText ">
-           Join <span className="text-mboTurq-500 font-bold">50+</span> Muslim Businesses In Building Lasting
-          Connections
+          Join <span className="text-mboTurq-500 font-extrabold">50+</span>{" "}
+          Muslim Businesses In Building Lasting Connections
         </h2>
       </div>
     </section>

@@ -3,7 +3,7 @@ import React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useToast } from "../hooks/use-toast";
+// import { useToast } from "../hooks/use-toast";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Checkbox } from "../ui/checkbox";
+import { createUser } from "@/functions/createUser";
 
 const SignUpForm = () => {
   const formSchema = z.object({
@@ -37,7 +38,7 @@ const SignUpForm = () => {
       .string()
       .regex(
         /^[A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2}$/i,
-        "Invalid UK postcode format.",
+        "Invalid UK postcode format."
       ),
     business_address_country: z.string().default("United Kingdom"),
     business_website: z.string().url("Invalid URL Format"),
@@ -55,7 +56,9 @@ const SignUpForm = () => {
     email_consent: z.boolean(),
   });
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  type formSchemaType = z.infer<typeof formSchema>;
+
+  const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       first_name: "",
@@ -74,38 +77,38 @@ const SignUpForm = () => {
     },
   });
 
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
-  function MakeToast(data: z.infer<typeof formSchema>) {
-    toast({
-      title: "You Submitted The Following Values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded -md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  // function MakeToast(data: formSchemaType) {
+  //   toast({
+  //     title: "You Submitted The Following Values:",
+  //     description: (
+  //       <pre className="mt-2 w-[340px] rounded -md bg-slate-950 p-4">
+  //         <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+  //       </pre>
+  //     ),
+  //   });
+  // }
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log("toast made");
-    MakeToast(data);
-  }
+  const onSubmit = form.handleSubmit(async (data: formSchemaType) => {
+    const response = await createUser(data);
+    if (response?.error) {
+      console.log("didnt work");
+    }
+  });
 
   //   const fileRef = form.register("business_logo");
 
   return (
-    <section className="w-4/5 flex items-center flex-col">
-      <div className="p-10">
-        <h2 className="formTitle">Lets get Started</h2>
-      </div>
-      <div className="flex items-center justify-center bg-secondary p-5 rounded-lg w-full sm:mb-10">
+    <section className="w-full flex items-center flex-col">
+      <div className="flex flex-col items-center justify-center bg-secondary p-3 rounded-lg w-full sm:mb-10 border-mboOutline-50 bg-white border-2 border-solid">
+        <div className="m-5 flex flex-col items-center">
+          <h2 className="formTitle">Lets get Started</h2>
+          <h3 className="formSubtitle">It&apos;s Easy to Do</h3>
+        </div>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-10"
-          >
-            <div className="flex md:flex-row flex-col justify-between">
+          <form onSubmit={onSubmit} className="w-full space-y-10">
+            <div className="flex  flex-col justify-between">
               <div className="formSection">
                 <div className="flex justify-between">
                   <FormField
