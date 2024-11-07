@@ -35,12 +35,12 @@ export default async function Home() {
       <Header />
       <Slider/>
       <div className="w-full flex flex-col-reve md:flex-row">
-        <div className=" md:w-[60%] mt-10 pt-[24vh] w-full">
+        <div className=" md:w-[60%] mt-10 pt-[24vh] md:pt-0 w-full">
         <SignUpForm />
         </div>
         <div className=" mt-10 md:w-[48%]">
           <div className="">
-            <Image alt="iphone image" src={'/iphoneMockup.png'} width={250} height={550} className="absolute z-10 transform translate-y-[150px] translate-x-[50px] hidden md:block"/>
+            <Image alt="iphone image" src={'/iphoneMockup.png'} width={250} height={550} className="absolute z-10 transform translate-y-[80px] translate-x-[50px] hidden md:block"/>
             <Image alt="iphone image" src={'/iphoneMockup.png'} width={120} height={245} className=" inset-0 absolute z-10 transform md:hidden translate-x-[20px] translate-y-[390px]"/>
           </div>
           <div>
