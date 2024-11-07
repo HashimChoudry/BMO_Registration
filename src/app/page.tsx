@@ -34,16 +34,18 @@ export default async function Home() {
     <div className="w-[80%] flex items-center justify-center flex-col">
       <Header />
       <Slider/>
-      <div className="w-full gap-5 flex">
-        <div className=" w-[60%] mt-10">
+      <div className="w-full flex flex-col-reve md:flex-row">
+        <div className=" md:w-[60%] mt-10 pt-[24vh] w-full">
         <SignUpForm />
         </div>
-        <div className=" mt-10 w-[48%]">
+        <div className=" mt-10 md:w-[48%]">
           <div className="">
-            <Image alt="iphone image" src={'/iphone-image.png'} width={250} height={550} className="absolute z-10 transform translate-y-[150px] translate-x-[50px]"/>
+            <Image alt="iphone image" src={'/iphoneMockup.png'} width={250} height={550} className="absolute z-10 transform translate-y-[150px] translate-x-[50px] hidden md:block"/>
+            <Image alt="iphone image" src={'/iphoneMockup.png'} width={120} height={245} className=" inset-0 absolute z-10 transform md:hidden translate-x-[20px] translate-y-[390px]"/>
           </div>
           <div>
-            <Image alt="ipad image" src={'/ipad-image.png'} width={750} height={510} className="absolute z-1 transform  translate-x-[200px]" />
+            <Image alt="ipad image" src={'/ipadMockup.png'} width={750} height={510} className="absolute z-0 transform  translate-x-[200px] hidden md:block" />
+            <Image alt="ipad image" src={'/ipadMockup.png'} width={435} height={315} className="inset-0 absolute z-0 transform md:hidden translate-x-[50px] translate-y-[290px]" />
           </div>
           
         </div>

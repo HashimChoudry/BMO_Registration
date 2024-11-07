@@ -100,8 +100,8 @@ const SignUpForm = () => {
   //   const fileRef = form.register("business_logo");
 
   return (
-    <section className="w-full flex items-center flex-col">
-      <div className="flex flex-col items-center justify-center bg-secondary p-3 pl-5 pr-5 rounded-lg w-full sm:mb-10 border-mboOutline-50 bg-white border-2 border-solid ">
+    <section className="w-full flex items-center flex-col ">
+      <div className="flex flex-col items-center justify-center bg-secondary p-3 pl-5 pr-5 rounded-lg w-full sm:mb-10 border-mboOutline-50 bg-white border-2 border-solid z-20">
         <div className="m-3 flex flex-col items-center">
           <h2 className="formTitle">Lets get Started</h2>
           <h3 className="formSubtitle">It&apos;s Easy to Do</h3>
@@ -110,12 +110,12 @@ const SignUpForm = () => {
           <form onSubmit={onSubmit} className="w-full space-y-10">
             <div className="flex  flex-col justify-between">
               <div className="formSection">
-                <div className="flex justify-between">
+                <div className="flex justify-between flex-col md:flex-row">
                   <FormField
                     control={form.control}
                     name="first_name"
                     render={({ field }) => (
-                      <FormItem className="w-[48%]">
+                      <FormItem className="md:w-[48%]">
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
                           <Input placeholder="First Name" {...field} />
@@ -128,7 +128,7 @@ const SignUpForm = () => {
                     control={form.control}
                     name="second_name"
                     render={({ field }) => (
-                      <FormItem className="w-[48%]">
+                      <FormItem className="md:w-[48%]">
                         <FormLabel>Second Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Second Name" {...field} />
