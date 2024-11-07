@@ -18,9 +18,11 @@ export async function createUser(data: formSchemaType) {
     await db.form.create({
       data,
     });
+    revalidatePath("/");
+    return{success:true}
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    throw new Error(errorMessage);
+    return{error:errorMessage}
   }
-  revalidatePath("/");
+  
 }

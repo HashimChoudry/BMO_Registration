@@ -3,7 +3,7 @@ import React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-// import { useToast } from "../hooks/use-toast";
+import { useToast } from "../hooks/use-toast";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
@@ -16,6 +16,7 @@ import {
 } from "../ui/form";
 import { Checkbox } from "../ui/checkbox";
 import { createUser } from "@/functions/createUser";
+import { revalidatePath } from "next/cache";
 
 const SignUpForm = () => {
   const formSchema = z.object({
@@ -77,7 +78,7 @@ const SignUpForm = () => {
     },
   });
 
-  // const { toast } = useToast();
+  const { toast } = useToast();
 
   // function MakeToast(data: formSchemaType) {
   //   toast({
@@ -91,9 +92,36 @@ const SignUpForm = () => {
   // }
 
   const onSubmit = form.handleSubmit(async (data: formSchemaType) => {
-    const response = await createUser(data);
-    if (response?.error) {
-      console.log("didnt work");
+    try {
+      const response = await createUser(data);
+
+      if (response.error) {
+        // An error occurred in createUser, display it in a toast
+        toast({
+          title: "Error",
+          description: response.error,
+          duration: 5000,
+          variant:"destructive"
+        });
+      } else if (response.success) {
+        // No error, display a success message
+        toast({
+          title: "Success",
+          description: "User created successfully!",
+          duration: 3000,
+        });
+        revalidatePath("/");
+      }
+    } catch (error) {
+      // If there's an unexpected error, catch it and display a generic message
+      const errorMessage =
+        error instanceof Error ? error.message : "An unknown error occurred";
+      toast({
+        title: "Unexpected Error",
+        description: errorMessage,
+
+        duration: 5000,
+      });
     }
   });
 

@@ -2,7 +2,10 @@ import React from "react";
 import { SLIDER_IMAGES } from "@/constants";
 import Image from "next/image";
 
+
 const Slider = () => {
+
+
   return (
     <section className="w-full">
       <div className="md:flex overflow-hidden mt-10 hidden  ">
