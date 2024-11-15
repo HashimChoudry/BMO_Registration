@@ -21,7 +21,7 @@ export const formSchema = z.object({
     ),
   business_address_country: z.string().default("United Kingdom"),
   business_website: z.string().url("Invalid URL Format"),
-  business_logo_url: z.string().optional(),
+  business_logo_url: z.string().default(""),
   email_consent: z.boolean(),
 });
 
