@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,9 +16,16 @@ import {
 } from "../ui/form";
 import { Checkbox } from "../ui/checkbox";
 import { createUser } from "@/functions/createUser";
-import { revalidatePath } from "next/cache";
+import { getSignedURL } from "@/actions/actions";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const maxFileSize = 5 * 1024 * 1024; // 5 MB in bytes
+  // const acceptedImageTypes = ["image/png", "image/jpeg"];
+
   const formSchema = z.object({
     first_name: z.string().min(2, { message: "Enter a Valid First Name" }),
     second_name: z.string().min(1, { message: "Enter a Valid Second Name" }),
@@ -43,17 +50,13 @@ const SignUpForm = () => {
       ),
     business_address_country: z.string().default("United Kingdom"),
     business_website: z.string().url("Invalid URL Format"),
-    // business_logo: z
-    //   .instanceof(File, { message: "Please Add a file" })
-    //   .refine((file) => file.size <= maxFileSize, {
-    //     message: "Ensure the file is less than 5MB",
-    //   })
-    //   .refine((file) => acceptedImageTypes.includes(file.type), {
-    //     message: "Please Use a .png or .jpeg file type",
-    //   }),
-    // consent: z.boolean().refine((val) => val === true, {
-    //   message: "You Must Consent To Your Logo Being Used",
-    // }),
+    business_logo: z
+      .instanceof(File, { message: "Please Add a file" })
+      .refine((file) => file.size <= maxFileSize, {
+        message: "Ensure the file is less than 5MB",
+      })
+      .optional(),
+    business_logo_url: z.string().optional(),
     email_consent: z.boolean(),
   });
 
@@ -72,13 +75,15 @@ const SignUpForm = () => {
       business_address_postcode: "",
       business_address_street: "",
       business_website: "",
-      //   business_logo: undefined,
+      business_logo: undefined,
+      business_logo_url: "",
       //   consent:false,
       email_consent: false,
     },
   });
 
   const { toast } = useToast();
+  const router = useRouter()
 
   // function MakeToast(data: formSchemaType) {
   //   toast({
@@ -91,17 +96,63 @@ const SignUpForm = () => {
   //   });
   // }
 
+  const computeSHA256 = async (file: File) => {
+    const buffer = await file.arrayBuffer();
+    const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+    return hashHex;
+  };
+
   const onSubmit = form.handleSubmit(async (data: formSchemaType) => {
     try {
+      if (data.business_logo !== undefined) {
+        setStatusMessage("creating");
+        setIsLoading(true);
+        if (data) {
+          setStatusMessage("uploading file");
+          const checksum = await computeSHA256(data.business_logo);
+          const signedurl = await getSignedURL(
+            data.business_logo.type,
+            data.business_logo.size,
+            checksum,
+            data.business_name
+          );
+
+          if (signedurl?.failure !== undefined) {
+            setStatusMessage("failed");
+            throw new Error(signedurl.failure);
+          }
+
+          const url = signedurl.success.url;
+          console.log({ url });
+
+          await fetch(url, {
+            method: "PUT",
+            body: data.business_logo,
+            headers: {
+              "Content-Type": data.business_logo?.type,
+            },
+          });
+          data.business_logo = undefined
+          data.business_logo_url = url;
+
+          setStatusMessage("created");
+          setIsLoading(false);
+        }
+      }
+      console.log(data)
       const response = await createUser(data);
 
       if (response.error) {
         // An error occurred in createUser, display it in a toast
         toast({
           title: "Error",
-          description: response.error,
+          description: "You Have Already Signed Up",
           duration: 5000,
-          variant:"destructive"
+          variant: "destructive",
         });
       } else if (response.success) {
         // No error, display a success message
@@ -110,7 +161,7 @@ const SignUpForm = () => {
           description: "User created successfully!",
           duration: 3000,
         });
-        revalidatePath("/");
+        router.push("/success")
       }
     } catch (error) {
       // If there's an unexpected error, catch it and display a generic message
@@ -290,28 +341,29 @@ const SignUpForm = () => {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
-                      control={form.control}
-                      name="business_logo"
-                      render={({ field }) => {
-                        return (
-                          <FormItem>
-                            <FormLabel>File</FormLabel>
-                            <FormControl>
-                              <Input
-                                type="file"
-                                
-                                {...fileRef}
-                                onChange={(e) => {
-                                  field.onChange(e.target.files && e.target.files[0]);
-                                }}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        );
-                      }}
-                    /> */}
+                <FormField
+                  control={form.control}
+                  name="business_logo"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel>File</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            onChange={(e) => {
+                              field.onChange(
+                                e.target.files && e.target.files[0]
+                              );
+                            }}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+                <span>{statusMessage}</span>
                 <FormField
                   control={form.control}
                   name="email_consent"
@@ -333,6 +385,7 @@ const SignUpForm = () => {
                 <Button size={"lg"} type="submit" className="self-center">
                   Submit
                 </Button>
+                <span className={isLoading ? 'block': 'hidden'}>Loading...</span>
               </div>
             </div>
           </form>

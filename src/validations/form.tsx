@@ -21,17 +21,7 @@ export const formSchema = z.object({
     ),
   business_address_country: z.string().default("United Kingdom"),
   business_website: z.string().url("Invalid URL Format"),
-  // business_logo: z
-  //   .instanceof(File, { message: "Please Add a file" })
-  //   .refine((file) => file.size <= maxFileSize, {
-  //     message: "Ensure the file is less than 5MB",
-  //   })
-  //   .refine((file) => acceptedImageTypes.includes(file.type), {
-  //     message: "Please Use a .png or .jpeg file type",
-  //   }),
-  // consent: z.boolean().refine((val) => val === true, {
-  //   message: "You Must Consent To Your Logo Being Used",
-  // }),
+  business_logo_url: z.string().optional(),
   email_consent: z.boolean(),
 });
 
