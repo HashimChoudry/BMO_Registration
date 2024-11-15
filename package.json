@@ -12,7 +12,8 @@
     "db:migrate:make": "TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\" }' knex migrate:make",
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && pnpm db:migrate && next build",
-    "prismaDev": "dotenv -e .env.development prisma migrate dev"
+    "prismaDev": "dotenv -e .env.development prisma migrate dev",
+    "knex": "tsx ./node_modules/knex/bin/cli.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.687.0",
@@ -38,7 +39,6 @@
     "react-hook-form": "^7.53.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
-    "ts-node": "^10.9.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -53,6 +53,7 @@
     "prettier": "^3.3.3",
     "prisma": "^5.21.1",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

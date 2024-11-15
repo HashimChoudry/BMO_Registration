@@ -16,7 +16,7 @@ export async function up(knex: Knex): Promise<void> {
       .defaultTo("United Kingdom")
       .notNullable();
     table.string("business_website", 255).notNullable();
-    table.string("business_logo_url").nullable();
+    table.string("business_logo_url",500).nullable();
     table.boolean("email_consent").notNullable();
     table.timestamp("createdAt").defaultTo(knex.fn.now()).notNullable().index();
     table.timestamp("updatedAt").defaultTo(knex.fn.now()).notNullable();
@@ -26,3 +26,4 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
     await knex.schema.dropTable("signUpData")
 }
+

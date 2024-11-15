@@ -56,7 +56,7 @@ const SignUpForm = () => {
         message: "Ensure the file is less than 5MB",
       })
       .optional(),
-    business_logo_url: z.string().optional(),
+    business_logo_url: z.string(),
     email_consent: z.boolean(),
   });
 
@@ -150,7 +150,7 @@ const SignUpForm = () => {
         // An error occurred in createUser, display it in a toast
         toast({
           title: "Error",
-          description: "You Have Already Signed Up",
+          description: response.error,
           duration: 5000,
           variant: "destructive",
         });

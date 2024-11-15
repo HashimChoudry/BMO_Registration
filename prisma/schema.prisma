@@ -30,7 +30,7 @@ model Form {
   business_address_postcode String  @db.VarChar(10) // For UK postcode format
   business_address_country String   @default("United Kingdom") @db.VarChar(255)
   business_website         String   @db.VarChar(255)
-  business_logo_url        String   @unique
+  business_logo_url        String   @db.Text
   email_consent            Boolean
   createdAt                DateTime @default(now())
   updatedAt                DateTime @updatedAt
